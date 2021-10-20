@@ -28,9 +28,15 @@ function draw(){
    if(keyDown("space")){
     trex.velocityX = -10
    }
-    trex.velocityY = 0,8;
+   
     trex.collide(chao);
+ if(chao.x<0){
+    chao.x = chao.width/2;
+   }
 
+
+
+    trex.velocityY = trex.velocityY + 0.8;
 
   drawSprites();
 }
