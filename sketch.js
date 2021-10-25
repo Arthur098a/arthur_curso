@@ -1,4 +1,4 @@
-
+var chaoInvisivel
 var trex;
 var trexAnim;
 var chao;
@@ -13,11 +13,14 @@ function setup(){
   createCanvas(600,200)
   
   //create a trex sprite
- trex = createSprite (50, 160, 20, 20);
+ trex = createSprite (60, 160, 20, 20);
  trex.addAnimation("trexrunning",trexAnim);
  trex.scale = 0.7;
 
- chao = createSprite (300, 190, 600, 20);
+chaoInvisivel = createSprite(300, 195, 600, 10);
+chaoInvisivel.visible = false
+
+ chao = createSprite (300, 180, 600, 20);
  chao.addImage(chaoImg);
 }
 
@@ -25,18 +28,25 @@ function draw(){
   background("white");
   
    chao.velocityX = -2
-   if(keyDown("space")){
-    trex.velocityX = -10
-   }
+    
+
    
-    trex.collide(chao);
- if(chao.x<0){
+   if(chao.x<0){
     chao.x = chao.width/2;
    }
 
 
 
     trex.velocityY = trex.velocityY + 0.8;
+    
+ 
 
-  drawSprites();
+if(keyDown("space") && trex.y > 156) {
+trex.velocityY = -10;
 }
+trex.collide(chaoInvisivel);
+   console.log(trex.y);                                    
+
+   drawSprites();
+}
+
